@@ -4,6 +4,7 @@ import org.scalacheck.{Arbitrary, Gen}, Arbitrary.arbitrary
 import Pirate._
 import pirate.internal._
 import scalaz._, Scalaz._
+import scalacheck.ScalaCheckBinding._
 
 sealed trait TestCommand
 case class TestWrapper(cmd: TestCommand)

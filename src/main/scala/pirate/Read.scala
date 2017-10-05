@@ -1,6 +1,7 @@
 package pirate
 
-import scalaz._, Scalaz._
+import scalaz._
+import Scalaz._
 import scala.util.Try
 
 /**
@@ -63,6 +64,7 @@ case class Read[A](read: List[String] => ReadError \/ (List[String], A)) {
 }
 
 object Read extends shapeless.ProductTypeClassCompanion[Read] {
+
   def of[A: Read]: Read[A] =
     implicitly[Read[A]]
 
@@ -180,7 +182,7 @@ object Read extends shapeless.ProductTypeClassCompanion[Read] {
     def append(p1: Read[A], p2: => Read[A]): Read[A] = p1 ||| p2
   }
 
-  implicit def ReadTypeClass: shapeless.ProductTypeClass[Read] = new shapeless.ProductTypeClass[Read] {
+  implicit val typeClass: shapeless.ProductTypeClass[Read] = new shapeless.ProductTypeClass[Read] {
     import shapeless._
 
     def emptyProduct =
